@@ -1,3 +1,9 @@
+/*
+An array is given consisting of 0s and 1s, and an integer B is given.
+B is the maximum no. of times by which a 0 can be flipped to 1 as such we have to find the maximum continuous substring of 1s with
+B flips.
+
+*/
 #include <bits/stdc++.h>
 using namespace std;
 
