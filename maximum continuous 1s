@@ -1,0 +1,69 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+vector<int> fun(vector<int> &A, int B)
+{
+    int l, r;
+    int flag = 0;
+    int z = 0;
+    l = r = 0;
+    int range = -1;
+    int start, end;
+    start = end = 0;
+    if(r < A.size() && A[r] == 0) z++;
+    while(r<A.size()) {
+        if(z <= B) {
+            if(r+1 < A.size() && A[r+1] == 0) {
+                z++;
+            }
+            ++r;
+        }
+        if(z > B) {
+            if(A[l] == 0) {
+                z--;
+            }
+            ++l;
+        }
+
+        if(!flag && r == A.size()) {
+            r--;
+            flag = 1;
+        }
+        //cout << l << " " << r << " " << z << endl;
+        if(r - l + 1 > range) {
+            //cout << l << " " << r << " " << z << endl;
+            range = r - l + 1;
+            start = l;
+            if(r == A.size()) end = r - 1;
+            else end = r;
+        }
+        if(flag) {
+            r++;
+            flag = 0;
+        }
+    }
+
+    vector<int> v;
+    for(int i = start; i<=end; ++i) {
+        v.push_back(i);
+    }
+    return v;
+}
+
+int main()
+{
+    //freopen("max.txt", "r", stdin);
+    vector<int> v;
+    int n; cin >> n;
+    for(int i = 0; i<n; ++i) {
+        int x; cin >> x;
+        v.push_back(x);
+    }
+    int B; cin >> B;
+    vector<int> w = fun(v, B);
+    for(int i = 0; i<w.size(); ++i) {
+        cout << w[i] << " ";
+    }
+    cout << endl;
+    return 0;
+}
